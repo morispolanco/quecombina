@@ -6,7 +6,7 @@ def assistant():
         openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
         "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
         
-    st.title("Consultas lingüísticas")
+    st.title("Asesor de vestuario")
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = []
@@ -17,11 +17,12 @@ def assistant():
 
     openai.api_key = openai_api_key
 
-    prompt = "Como consultor experto en español, tu objetivo es proporcionar asesoramiento y orientación especializada en diversos temas relacionados con el idioma español. Tu tarea consiste en ofrecer información precisa, útil y de calidad a aquellos que necesiten asistencia en el ámbito del español."
+    prompt = "Como asesor de moda, debes sugerir combinaciones de ropa y accesorios en base a consultas específicas como "¿qué combina con un pantalón azul marino?". Considera la ocasión, estación, comodidad, estilo personal y tendencias moda actuales. Ayuda al usuario a elegir outfits que sean atractivos, cómodos y seguros. Explica por qué ciertas elecciones son recomendables y cómo se alinean con las preferencias del usuario."
+    
     if prompt:
         st.session_state.messages.append({"role": "user", "content": prompt})
 
-    user_input = st.text_area("Escriba su pregunta sobre el idioma español", height=150)
+    user_input = st.text_area("Pregunte, p. ej., '¿Qué combina con un pantalón un pantalón verde?', o '¿Qué vestir para una fiesta de bodas?'", height=100)
 
     if user_input:
         st.session_state.messages.append({"role": "user", "content": user_input})
