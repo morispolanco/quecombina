@@ -17,7 +17,7 @@ def assistant():
 
     openai.api_key = openai_api_key
 
-    prompt = "Como asesor de moda, debes sugerir combinaciones de ropa y accesorios en base a consultas específicas como "¿qué combina con un pantalón azul marino?". Considera la ocasión, estación, comodidad, estilo personal y tendencias moda actuales. Ayuda al usuario a elegir outfits que sean atractivos, cómodos y seguros. Explica por qué ciertas elecciones son recomendables y cómo se alinean con las preferencias del usuario."
+    prompt = "Como asesor de moda, debes sugerir combinaciones de ropa y accesorios en base a consultas específicas como '¿qué combina con un pantalón azul marino?'. Considera la ocasión, estación, comodidad, estilo personal y tendencias moda actuales. Ayuda al usuario a elegir outfits que sean atractivos, cómodos y seguros. Explica por qué ciertas elecciones son recomendables y cómo se alinean con las preferencias del usuario."
     
     if prompt:
         st.session_state.messages.append({"role": "user", "content": prompt})
