@@ -1,5 +1,6 @@
 import openai
 import streamlit as st
+import pyttsx3
 
 def assistant():
     with st.sidebar:
@@ -21,6 +22,7 @@ def assistant():
     
     if prompt:
         st.session_state.messages.append({"role": "user", "content": prompt})
+        text_to_speech(prompt)
 
     user_input = st.text_area("Escriba tres párrafos sobre cualquier tema", height=300)
 
@@ -30,6 +32,7 @@ def assistant():
         msg = response.choices[0].message
         st.session_state.messages.append(msg)
         st.chat_message("assistant").write(msg.content)
+        text_to_speech(msg.content)
 
     if st.button("Analizar"):
         optimized_prompt = generate_optimized_prompt(prompt)
@@ -38,10 +41,18 @@ def assistant():
         msg = response.choices[0].message
         st.session_state.messages.append(msg)
         st.chat_message("assistant").write(msg.content)
+        text_to_speech(msg.content)
 
 def generate_optimized_prompt(prompt):
     # Aquí puedes agregar tu lógica para generar el prompt optimizado
     optimized_prompt = prompt + " [Optimized]"
     return optimized_prompt
+
+def text_to_speech(text):
+    engine = pyttsx3.init()
+    engine.setProperty('rate', 150)  # Velocidad de reproducción del habla
+    engine.setProperty('volume', 0.8)  # Volumen del habla
+    engine.say(text)
+    engine.runAndWait()
 
 assistant()
