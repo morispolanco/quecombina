@@ -22,7 +22,7 @@ def assistant():
     if prompt:
         st.session_state.messages.append({"role": "assistant", "content": prompt})
 
-    user_input = st.text_area("Pregunte, p. ej., '¿Qué combina con un pantalón un pantalón verde?', o '¿Qué vestir para una fiesta de bodas?'", height=100)
+    user_input = st.text_area("Pregunte, p. ej., '¿Qué combina con un pantalón verde?', o '¿Qué vestir para una fiesta de bodas?'", height=100)
 
     if user_input:
         st.session_state.messages.append({"role": "user", "content": user_input})
