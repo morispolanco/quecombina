@@ -20,7 +20,7 @@ def assistant():
     prompt = "Como asesor de moda, debes sugerir combinaciones de ropa y accesorios en base a consultas específicas como '¿qué combina con un pantalón azul marino?'. Considera la ocasión, estación, comodidad, estilo personal y tendencias moda actuales. Ayuda al usuario a elegir outfits que sean atractivos, cómodos y seguros. Explica por qué ciertas elecciones son recomendables y cómo se alinean con las preferencias del usuario."
     
     if prompt:
-        st.session_state.messages.append({"role": "user", "content": prompt})
+        st.session_state.messages.append({"role": "assistant", "content": prompt})
 
     user_input = st.text_area("Pregunte, p. ej., '¿Qué combina con un pantalón un pantalón verde?', o '¿Qué vestir para una fiesta de bodas?'", height=100)
 
@@ -33,7 +33,7 @@ def assistant():
 
     if st.button("Consultar"):
         optimized_prompt = generate_optimized_prompt(prompt)
-        st.session_state.messages.append({"role": "user", "content": optimized_prompt})
+        st.session_state.messages.append({"role": "assistant", "content": optimized_prompt})
         response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
         msg = response.choices[0].message
         st.session_state.messages.append(msg)
